@@ -29,31 +29,31 @@ const screenshots = [
     id: 1,
     title: "博客首页",
     description: "简洁优雅的文章列表",
-    url: "https://testingcf.jsdelivr.net/gh/QuillStack-Blog/web-site@main/public/images/home/e9781d3fccfa655655b5861b64457d958dfcce2e.png",
+    url: "https://quillstack.js.org/images/home/e9781d3fccfa655655b5861b64457d958dfcce2e.png",
   },
   {
     id: 2,
     title: "文章详情",
     description: "沉浸式的阅读体验",
-    url: "https://testingcf.jsdelivr.net/gh/QuillStack-Blog/web-site@main/public/images/home/9e08e8fa7df325ccb556d2cf4cc420abf708b46e.png",
+    url: "https://quillstack.js.org/images/home/9e08e8fa7df325ccb556d2cf4cc420abf708b46e.png",
   },
   {
     id: 3,
     title: "分类浏览",
     description: "轻松管理和发现内容",
-    url: "https://testingcf.jsdelivr.net/gh/QuillStack-Blog/web-site@main/public/images/home/6ccb60071be8f00760a3824d9f7d0fad57de789f.png",
+    url: "https://quillstack.js.org/images/home/6ccb60071be8f00760a3824d9f7d0fad57de789f.png",
   },
   {
     id: 4,
     title: "友情链接页面",
     description: "好朋友就要在一起",
-    url: "https://testingcf.jsdelivr.net/gh/QuillStack-Blog/web-site@main/public/images/home/ba34b28aa06852bf23d5d30a4742113d49a166dc.png",
+    url: "https://quillstack.js.org/images/home/ba34b28aa06852bf23d5d30a4742113d49a166dc.png",
   },
   {
     id: 5,
     title: "深色模式",
     description: "护眼夜间阅读",
-    url: "https://testingcf.jsdelivr.net/gh/QuillStack-Blog/web-site@main/public/images/home/e7f8b9dcdb12a0a6d3253383f4b684272906ae03.png",
+    url: "https://quillstack.js.org/images/home/e7f8b9dcdb12a0a6d3253383f4b684272906ae03.png",
   },
 ];
 

@@ -94,7 +94,7 @@ export function Stats() {
           className="text-center mb-12"
         >
           <a
-            href="https://github.com"
+            href="https://github.com/QuillStack-Blog/QuillStack"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-3 px-6 py-3 bg-background-secondary text-foreground rounded-full hover:bg-background-tertiary transition-colors border border-border group"
