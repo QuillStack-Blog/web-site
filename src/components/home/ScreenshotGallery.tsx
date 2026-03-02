@@ -29,31 +29,31 @@ const screenshots = [
     id: 1,
     title: "博客首页",
     description: "简洁优雅的文章列表",
-    url: "https://placehold.co/1200x700/fff7ed/f97316?text=Blog+Homepage",
+    url: "images/home/e9781d3fccfa655655b5861b64457d958dfcce2e.png",
   },
   {
     id: 2,
     title: "文章详情",
     description: "沉浸式的阅读体验",
-    url: "https://placehold.co/1200x700/ffffff/f97316?text=Article+Page",
+    url: "images/home/9e08e8fa7df325ccb556d2cf4cc420abf708b46e.png",
   },
   {
     id: 3,
     title: "分类浏览",
     description: "轻松管理和发现内容",
-    url: "https://placehold.co/1200x700/fed7aa/f97316?text=Categories",
+    url: "images/home/6ccb60071be8f00760a3824d9f7d0fad57de789f.png",
   },
   {
     id: 4,
-    title: "关于页面",
-    description: "展示你的个人品牌",
-    url: "https://placehold.co/1200x700/1f2937/f97316?text=About+Page",
+    title: "友情链接页面",
+    description: "好朋友就要在一起",
+    url: "images/home/ba34b28aa06852bf23d5d30a4742113d49a166dc.png",
   },
   {
     id: 5,
     title: "深色模式",
     description: "护眼夜间阅读",
-    url: "https://placehold.co/1200x700/0f172a/f97316?text=Dark+Mode",
+    url: "images/home/e7f8b9dcdb12a0a6d3253383f4b684272906ae03.png",
   },
 ];
 
@@ -142,7 +142,7 @@ export function ScreenshotGallery() {
               <div className="flex-1 mx-2 sm:mx-4">
                 <div className="bg-background rounded-md px-3 py-1 text-xs text-foreground-subtle text-center flex items-center justify-center gap-2 border border-border">
                   <Monitor className="w-3 h-3" />
-                  <span className="truncate">quillstack-demo.vercel.app</span>
+                  <span className="truncate">quillstack-demo.pages.dev</span>
                 </div>
               </div>
               <div className="w-16" />
