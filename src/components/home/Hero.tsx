@@ -107,7 +107,7 @@ export function Hero() {
             {/* 预览内容 - 图片填满 */}
             <div className="relative w-full h-[94%] bg-white dark:bg-gray-900 overflow-hidden">
               <img 
-                src="images/home/17f5d4f0fb0dc9752cb7d21eca6aab2f6d3dcfbe.png" 
+                src="https://testingcf.jsdelivr.net/gh/QuillStack-Blog/web-site@main/public/images/home/17f5d4f0fb0dc9752cb7d21eca6aab2f6d3dcfbe.png" 
                 alt="博客预览图" 
                 className="w-full h-full object-cover"
               />
