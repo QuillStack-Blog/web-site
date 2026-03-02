@@ -107,7 +107,7 @@ export function FloatingIsland() {
           {/* GitHub 链接 */}
           <div className="hidden md:flex items-center gap-4">
             <motion.a
-              href="https://github.com"
+              href="https://github.com/QuillStack-Blog/QuillStack"
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.1 }}

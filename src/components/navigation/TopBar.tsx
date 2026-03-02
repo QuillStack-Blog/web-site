@@ -6,9 +6,7 @@ import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { useTheme } from "@/components/providers/ThemeProvider";
 
 const socialLinks = [
-  { icon: Github, href: "https://github.com", label: "GitHub" },
-  { icon: Twitter, href: "https://twitter.com", label: "Twitter" },
-  { icon: MessageCircle, href: "#", label: "Discord" },
+  { icon: Github, href: "https://github.com/QuillStack-Blog/QuillStack", label: "GitHub" },
   { icon: Rss, href: "/rss.xml", label: "RSS" },
 ];
 
@@ -56,7 +54,7 @@ export function TopBar() {
         <div className="flex items-center gap-3">
           {/* 版本标签 */}
           <motion.a
-            href="https://github.com/releases"
+            href="https://github.com/QuillStack-Blog/QuillStack/releases"
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ scale: 1.02 }}
