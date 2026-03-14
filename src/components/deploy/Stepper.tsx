@@ -1,104 +1,64 @@
 "use client";
 
-import { motion } from "framer-motion";
+import type { ReactNode } from "react";
 
-interface Step {
-  number: number;
-  label: string;
-}
-
-interface StepperProps {
-  steps: Step[];
-  currentStep: number;
-  onStepClick: (step: number) => void;
-}
-
-export function Stepper({ steps, currentStep, onStepClick }: StepperProps) {
+export function Stepper({
+  steps,
+  current,
+  onChange,
+}: {
+  steps: Array<{ label: string }>;
+  current: number;
+  onChange: (index: number) => void;
+}) {
   return (
-    <div className="flex items-center justify-center gap-4">
+    <div className="card" style={{ padding: "0.75rem", display: "grid", gap: "0.5rem", gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
       {steps.map((step, index) => {
-        const isActive = step.number === currentStep;
-        const isCompleted = step.number < currentStep;
-        const isLast = index === steps.length - 1;
-
+        const isActive = current === index;
         return (
-          <div key={step.number} className="flex items-center">
-            <motion.button
-              onClick={() => onStepClick(step.number)}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="flex flex-col items-center gap-2 focus:outline-none"
-            >
-              {/* 步骤圆圈 */}
-              <motion.div
-                animate={{
-                  backgroundColor: isActive 
-                    ? "#f97316" 
-                    : isCompleted 
-                      ? "#22c55e" 
-                      : "var(--orange-50)",
-                  borderColor: isActive 
-                    ? "#f97316" 
-                    : isCompleted 
-                      ? "#22c55e" 
-                      : "var(--border)",
-                }}
-                className="w-10 h-10 rounded-full border-2 flex items-center justify-center font-bold text-sm transition-colors duration-300"
-                style={{
-                  color: isActive || isCompleted ? "white" : "var(--orange-600)",
-                }}
-              >
-                {isCompleted ? (
-                  <motion.svg
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    className="w-5 h-5"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <motion.path
-                      initial={{ pathLength: 0 }}
-                      animate={{ pathLength: 1 }}
-                      transition={{ duration: 0.3 }}
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </motion.svg>
-                ) : (
-                  step.number
-                )}
-              </motion.div>
-
-              {/* 步骤标签 */}
-              <span
-                className={`text-sm font-medium transition-colors duration-300 ${
-                  isActive
-                    ? "text-orange-600"
-                    : isCompleted
-                    ? "text-green-600"
-                    : "text-foreground-muted"
-                }`}
-              >
-                {step.label}
-              </span>
-            </motion.button>
-
-            {/* 连接线 */}
-            {!isLast && (
-              <motion.div
-                className="w-16 h-0.5 mx-4"
-                animate={{
-                  backgroundColor: isCompleted ? "#22c55e" : "var(--border)",
-                }}
-                transition={{ duration: 0.3 }}
-              />
-            )}
-          </div>
+          <button
+            key={step.label}
+            type="button"
+            onClick={() => onChange(index)}
+            style={{
+              borderRadius: 12,
+              border: "1px solid var(--border-primary)",
+              background: isActive ? "color-mix(in srgb, var(--brand-primary) 24%, transparent)" : "transparent",
+              color: "var(--text-primary)",
+              padding: "0.5rem 0.55rem",
+              cursor: "pointer",
+            }}
+          >
+            {step.label}
+          </button>
         );
       })}
+    </div>
+  );
+}
+
+export function StepPanel({ title, lead, checklist, terminalLabel, code, footer }: {
+  title: string;
+  lead: string;
+  checklist: string[];
+  terminalLabel: string;
+  code: string;
+  footer?: ReactNode;
+}) {
+  return (
+    <div className="card" style={{ padding: "1rem" }}>
+      <h2 style={{ marginTop: 0, fontFamily: "var(--font-title)", fontSize: "1.35rem" }}>{title}</h2>
+      <p style={{ color: "var(--text-secondary)" }}>{lead}</p>
+      <ul style={{ color: "var(--text-secondary)", marginTop: "0.5rem" }}>
+        {checklist.map((item) => (
+          <li key={item}>{item}</li>
+        ))}
+      </ul>
+      <div className="glass" style={{ borderRadius: 12, padding: "0.75rem", marginTop: "0.8rem" }}>
+        <div style={{ fontSize: "0.82rem", marginBottom: "0.35rem", color: "var(--text-tertiary)" }}>{terminalLabel}</div>
+        <pre style={{ margin: 0, fontFamily: "var(--font-mono)", fontSize: "0.82rem", overflowX: "auto" }}>{code}</pre>
+      </div>
+      {footer}
     </div>
   );
 }

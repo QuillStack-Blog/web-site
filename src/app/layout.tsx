@@ -1,42 +1,41 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { ThemeProvider } from "@/components/providers/ThemeProvider";
+import { AppProviders } from "@/components/providers/AppProviders";
 import { TopBar } from "@/components/navigation/TopBar";
 import { FloatingIsland } from "@/components/navigation/FloatingIsland";
+import { LOCALE_STORAGE_KEY, THEME_STORAGE_KEY } from "@/config/site";
 
 export const metadata: Metadata = {
   title: "QuillStack - 轻快写作，优雅呈现",
   description: "下一代静态博客构建工具。几分钟搭建，一辈子受益的个人博客。",
-  keywords: ["静态博客", "Next.js", "Markdown", "博客生成器", "QuillStack"],
-  authors: [{ name: "Bqiu" }],
-  openGraph: {
-    title: "QuillStack - 轻快写作，优雅呈现",
-    description: "下一代静态博客构建工具",
-    type: "website",
-    locale: "zh_CN",
-  },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+const preloadScript = `
+(function() {
+  var theme = localStorage.getItem('${THEME_STORAGE_KEY}') || 'system';
+  var locale = localStorage.getItem('${LOCALE_STORAGE_KEY}');
+  var dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  var resolved = theme === 'system' ? (dark ? 'dark' : 'light') : theme;
+  document.documentElement.classList.toggle('dark', resolved === 'dark');
+  document.documentElement.dataset.theme = resolved;
+  if (locale) {
+    document.documentElement.lang = locale;
+  }
+})();
+`;
+
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="zh-CN" suppressHydrationWarning>
-      <body className="antialiased min-h-screen bg-white dark:bg-slate-900 transition-colors duration-300">
-        <ThemeProvider>
-          {/* 顶部导航栏 */}
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: preloadScript }} />
+      </head>
+      <body>
+        <AppProviders>
           <TopBar />
-          
-          {/* 灵动岛导航 */}
           <FloatingIsland />
-          
-          {/* 主内容区 - 添加顶部内边距为两个导航栏留出空间 */}
-          <main className="pt-32">
-            {children}
-          </main>
-        </ThemeProvider>
+          <main>{children}</main>
+        </AppProviders>
       </body>
     </html>
   );

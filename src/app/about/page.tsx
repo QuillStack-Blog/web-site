@@ -5,11 +5,11 @@ import { Community } from "@/components/about/Community";
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen">
+    <>
       <Story />
       <FeatureList />
       <FileTree />
       <Community />
-    </div>
+    </>
   );
 }

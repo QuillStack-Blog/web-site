@@ -1,0 +1,28 @@
+<svg width="1600" height="1200" viewBox="0 0 1600 1200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g1" x1="0" y1="0" x2="1600" y2="1200" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F97316" stop-opacity="0.12"/>
+      <stop offset="1" stop-color="#22C55E" stop-opacity="0.07"/>
+    </linearGradient>
+    <radialGradient id="r1" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(280 180) rotate(35) scale(420 260)">
+      <stop stop-color="#F97316" stop-opacity="0.16"/>
+      <stop offset="1" stop-color="#F97316" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="r2" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1320 220) rotate(140) scale(460 300)">
+      <stop stop-color="#3B82F6" stop-opacity="0.14"/>
+      <stop offset="1" stop-color="#3B82F6" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="56" height="56" patternUnits="userSpaceOnUse">
+      <path d="M56 0H0V56" stroke="#FFFFFF" stroke-opacity="0.06"/>
+    </pattern>
+  </defs>
+
+  <rect width="1600" height="1200" fill="url(#grid)"/>
+  <rect width="1600" height="1200" fill="url(#g1)"/>
+  <rect width="1600" height="1200" fill="url(#r1)"/>
+  <rect width="1600" height="1200" fill="url(#r2)"/>
+
+  <circle cx="350" cy="930" r="220" stroke="#F97316" stroke-opacity="0.15" stroke-width="1.5"/>
+  <circle cx="1310" cy="880" r="280" stroke="#22C55E" stroke-opacity="0.12" stroke-width="1.5"/>
+  <circle cx="1180" cy="80" r="140" stroke="#38BDF8" stroke-opacity="0.14" stroke-width="1.5"/>
+</svg>

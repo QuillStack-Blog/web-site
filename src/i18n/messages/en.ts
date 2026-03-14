@@ -1,0 +1,193 @@
+import { zhMessages, type SiteMessages } from "./zh";
+
+export const enMessages: SiteMessages = {
+  ...zhMessages,
+  meta: {
+    title: "QuillStack - Lightweight writing, elegant delivery",
+    description:
+      "A next-generation static blog builder. Set up in minutes and benefit for a lifetime.",
+  },
+  common: {
+    ...zhMessages.common,
+    navigation: {
+      home: "Home",
+      deploy: "Deploy",
+      about: "About",
+      github: "GitHub",
+      rss: "RSS",
+    },
+    language: {
+      ...zhMessages.common.language,
+      label: "Language",
+    },
+    theme: {
+      ...zhMessages.common.theme,
+      titlePrefix: "Current Theme",
+    },
+    buttons: {
+      ...zhMessages.common.buttons,
+      start: "Start for Free",
+      learnMore: "Learn More",
+      next: "Next",
+      previous: "Previous",
+      restart: "Start Over",
+      copy: "Copy",
+      copied: "Copied",
+      viewGithub: "View on GitHub",
+      viewConfig: "View Full Config Docs",
+    },
+    labels: {
+      ...zhMessages.common.labels,
+      codeHighlight: "Syntax highlighted",
+      livePreview: "Live preview",
+      nowPlaying: "Video loading...",
+      playlist: "Playlist",
+      preview: "Preview",
+    },
+  },
+  home: {
+    ...zhMessages.home,
+    hero: {
+      ...zhMessages.home.hero,
+      slogan: "Lighter · Faster · More Beautiful",
+      subtitle: "Set up in minutes, benefit for a lifetime",
+      imageAlt: "Blog preview",
+      primaryBadge: "Tech humanism",
+      secondaryBadge: "Glassmorphism UI",
+      supportingText:
+        "A static blogging engine for writers, indie makers, and content creators who want calm, fast publishing.",
+      highlightItems: ["Static Export", "Three Languages", "Minimal Config"],
+    },
+    screenshotGallery: {
+      ...zhMessages.home.screenshotGallery,
+      eyebrow: "Screenshots",
+      title: "Exquisite Default Theme Out of the Box",
+      description: "Carefully designed default theme, no configuration needed.",
+      items: [
+        { id: "blog-home", title: "Blog Home", description: "Clean and elegant article list" },
+        { id: "article-detail", title: "Article Detail", description: "Immersive reading experience" },
+        { id: "category-browse", title: "Category Browse", description: "Easily manage and discover content" },
+        { id: "friends-link", title: "Friends Link Page", description: "Good friends stay together" },
+        { id: "dark-mode", title: "Dark Mode", description: "Eye-friendly night reading" },
+      ],
+    },
+    features: {
+      ...zhMessages.home.features,
+      eyebrow: "Core Strengths",
+      title: "Why QuillStack",
+      description: "Simple yet powerful, a blog builder born for writing",
+      items: [
+        { id: "fast-build", title: "Fast Build", description: "Powered by Next.js, instant build and deployment", accent: "⚡" },
+        { id: "beautiful-theme", title: "Beautiful Themes", description: "Carefully designed defaults, ready to use", accent: "🎨" },
+        { id: "lightweight", title: "Lightweight", description: "No redundant dependencies, focus on writing", accent: "🪶" },
+        { id: "minimal-config", title: "Minimal Config", description: "One JSON file handles everything", accent: "✨" },
+      ],
+    },
+    techStack: {
+      ...zhMessages.home.techStack,
+      eyebrow: "Modern Foundations",
+      title: "Modern Tech Stack, Performance Guaranteed",
+      description: "Built on industry-leading technology to power your blog",
+    },
+    cta: {
+      ...zhMessages.home.cta,
+      eyebrow: "Start Writing",
+      title: "Ready to Get Started?",
+      description: "Join thousands of users and create your elegant blog with QuillStack",
+      trustItems: ["Free Forever", "Open Source", "No Credit Card"],
+    },
+  },
+  about: {
+    ...zhMessages.about,
+    story: {
+      ...zhMessages.about.story,
+      eyebrow: "Our Story",
+      subtitle: "Make Writing Pure Again",
+      paragraphs: [
+        "QuillStack was born from a simple belief: everyone deserves an elegant writing space of their own.",
+        "Great tools should feel natural, helping you focus on content instead of setup.",
+      ],
+    },
+    featureList: {
+      ...zhMessages.about.featureList,
+      eyebrow: "What You Get",
+      title: "Features",
+      items: [
+        { title: "Markdown Writing", description: "Full Markdown syntax support" },
+        { title: "Categories & Tags", description: "Organize your posts flexibly" },
+        { title: "Responsive Design", description: "Excellent reading on every device" },
+        { title: "SEO Optimized", description: "Automatic sitemap and social cards" },
+        { title: "OG Image Generation", description: "Auto-generated share previews" },
+        { title: "Lightning Fast", description: "Lighthouse-ready performance" },
+        { title: "Theme Customization", description: "JSON-powered styling" },
+      ],
+    },
+    fileTree: {
+      ...zhMessages.about.fileTree,
+      eyebrow: "Structure",
+      title: "Project Structure",
+      description: "Simple and clear directory structure, easy to get started",
+      footer: "Highlighted items are your main workspace",
+    },
+    community: {
+      ...zhMessages.about.community,
+      eyebrow: "Community",
+      title: "Join Community",
+      description: "Join us to build together",
+      items: [
+        { id: "github", title: "GitHub", action: "⭐ Star" },
+        { id: "issues", title: "Feedback", action: "🐛 Issues" },
+        { id: "discussions", title: "Suggestions", action: "💡 Discussions" },
+      ],
+      footerText: "Made with love by the community",
+    },
+  },
+  deploy: {
+    ...zhMessages.deploy,
+    hero: {
+      eyebrow: "Deploy Guide",
+      title: "Quick Deploy",
+      description: "Start your blog journey in three steps",
+    },
+    steps: [
+      {
+        label: "Environment",
+        title: "Step 1 / 3: Prepare your environment",
+        lead: "Make sure you already have:",
+        checklist: ["Node.js 18+", "Git", "A GitHub account"],
+        extraTitle: "Quick start:",
+        terminalLabel: "Terminal",
+        code: "# Clone the starter repository\ngit clone https://github.com/xxx/quillstack\ncd quillstack",
+        primaryAction: "Next",
+      },
+      {
+        label: "Config",
+        title: "Step 2 / 3: Configure your site",
+        lead: "The full walkthrough is coming soon. You can start from these core entries.",
+        checklist: [
+          "Edit settings.json for title, author and theme",
+          "Organize markdown content and categories",
+          "Check social links, RSS and custom domain",
+        ],
+        extraTitle: "Coming soon:",
+        terminalLabel: "Config Preview",
+        code: "{\n  \"siteTitle\": \"My Blog\",\n  \"author\": {\n    \"name\": \"Author\"\n  },\n  \"theme\": {\n    \"primaryColor\": \"#f97316\"\n  }\n}",
+        primaryAction: "Next",
+      },
+      {
+        label: "Deploy",
+        title: "Step 3 / 3: Ship it",
+        lead: "Deployment details are still being refined. Start with a local static build.",
+        checklist: [
+          "Run npm install to fetch dependencies",
+          "Run npm run build to generate static files",
+          "Deploy dist folder to your preferred hosting",
+        ],
+        extraTitle: "Build commands:",
+        terminalLabel: "Terminal",
+        code: "npm install\nnpm run build",
+        primaryAction: "Start Over",
+      },
+    ],
+  },
+};
