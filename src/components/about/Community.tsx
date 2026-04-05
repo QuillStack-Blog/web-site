@@ -12,14 +12,10 @@ import { Bug, Lightbulb, Heart } from 'lucide-react'
 export function Community() {
   const { language } = useApp()
 
-  const links = language === 'en' ? [
-    { icon: FaGithub, title: 'GitHub', desc: '⭐ Star' },
-    { icon: Bug, title: 'Feedback', desc: '🐛 Issues' },
-    { icon: Lightbulb, title: 'Suggestions', desc: '💡 Discussions' },
-  ] : [
-    { icon: FaGithub, title: 'GitHub', desc: '⭐ Star' },
-    { icon: Bug, title: language === 'zh' ? '问题反馈' : '問題反饋', desc: '🐛 Issues' },
-    { icon: Lightbulb, title: language === 'zh' ? '功能建议' : '功能建議', desc: '💡 Discussions' },
+  const links = [
+    { icon: FaGithub, titleKey: 'nav.github', desc: t('community.star', language) },
+    { icon: Bug, titleKey: 'community.feedback', desc: t('community.issues', language) },
+    { icon: Lightbulb, titleKey: 'community.suggestions', desc: t('community.discussions', language) },
   ]
 
   return (
@@ -55,7 +51,7 @@ export function Community() {
                   <div className="w-14 h-14 rounded-xl bg-accent/50 flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/20 transition-colors">
                     <link.icon className="h-7 w-7 text-primary" />
                   </div>
-                  <h3 className="text-lg font-semibold mb-1">{link.title}</h3>
+                  <h3 className="text-lg font-semibold mb-1">{t(link.titleKey, language)}</h3>
                   <p className="text-sm text-muted-foreground">{link.desc}</p>
                 </CardContent>
               </Card>

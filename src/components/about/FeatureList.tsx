@@ -20,22 +20,14 @@ const iconMap: Record<string, React.ElementType> = {
 export function FeatureList() {
   const { language } = useApp()
 
-  const features = language === 'en' ? [
-    { icon: 'filetext', title: 'Markdown Writing', desc: 'Full Markdown syntax support' },
-    { icon: 'tags', title: 'Categories & Tags', desc: 'Organize your articles flexibly' },
-    { icon: 'smartphone', title: 'Responsive Design', desc: 'Perfect reading on any device' },
-    { icon: 'search', title: 'SEO Optimized', desc: 'Auto sitemap, social card generation' },
-    { icon: 'image', title: 'OG Image Generation', desc: 'Auto-generate article share preview' },
-    { icon: 'zap', title: 'Lightning Fast', desc: 'Lighthouse perfect score optimization' },
-    { icon: 'palette', title: 'Theme Customization', desc: 'JSON config, instant effect' },
-  ] : [
-    { icon: 'filetext', title: language === 'zh' ? 'Markdown 写作' : 'Markdown 寫作', desc: language === 'zh' ? '支持完整 Markdown 语法' : '支援完整 Markdown 語法' },
-    { icon: 'tags', title: language === 'zh' ? '分类与标签' : '分類與標籤', desc: language === 'zh' ? '灵活组织你的文章' : '靈活組織你的文章' },
-    { icon: 'smartphone', title: language === 'zh' ? '响应式设计' : '響應式設計', desc: language === 'zh' ? '在任何设备上完美阅读' : '在任何設備上完美閱讀' },
-    { icon: 'search', title: language === 'zh' ? 'SEO 优化' : 'SEO 優化', desc: language === 'zh' ? '自动 sitemap，社交卡片生成' : '自動 sitemap，社交卡片生成' },
-    { icon: 'image', title: language === 'zh' ? 'OG 图片生成' : 'OG 圖片生成', desc: language === 'zh' ? '自动生成文章分享预览图' : '自動生成文章分享預覽圖' },
-    { icon: 'zap', title: language === 'zh' ? '极速性能' : '極速性能', desc: language === 'zh' ? 'Lighthouse 满分优化' : 'Lighthouse 滿分優化' },
-    { icon: 'palette', title: language === 'zh' ? '主题自定义' : '主題自定義', desc: language === 'zh' ? 'JSON 配置，即时生效' : 'JSON 配置，即時生效' },
+  const features = [
+    { icon: 'filetext', titleKey: 'featurelist.markdown.title', descKey: 'featurelist.markdown.desc' },
+    { icon: 'tags', titleKey: 'featurelist.categories.title', descKey: 'featurelist.categories.desc' },
+    { icon: 'smartphone', titleKey: 'featurelist.responsive.title', descKey: 'featurelist.responsive.desc' },
+    { icon: 'search', titleKey: 'featurelist.seo.title', descKey: 'featurelist.seo.desc' },
+    { icon: 'image', titleKey: 'featurelist.ogimage.title', descKey: 'featurelist.ogimage.desc' },
+    { icon: 'zap', titleKey: 'featurelist.performance.title', descKey: 'featurelist.performance.desc' },
+    { icon: 'palette', titleKey: 'featurelist.theme.title', descKey: 'featurelist.theme.desc' },
   ]
 
   return (
@@ -72,8 +64,8 @@ export function FeatureList() {
                     <div className="w-12 h-12 rounded-xl bg-accent/50 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
                       <Icon className="h-6 w-6 text-primary" />
                     </div>
-                    <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
-                    <p className="text-sm text-muted-foreground">{feature.desc}</p>
+                    <h3 className="text-lg font-semibold mb-2">{t(feature.titleKey, language)}</h3>
+                    <p className="text-sm text-muted-foreground">{t(feature.descKey, language)}</p>
                   </CardContent>
                 </Card>
               </motion.div>

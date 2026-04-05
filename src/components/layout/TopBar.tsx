@@ -26,6 +26,13 @@ export function TopBar() {
     setMounted(true)
   }, [])
 
+  // Update document title based on language
+  useEffect(() => {
+    if (mounted) {
+      document.title = t('layout.title', language)
+    }
+  }, [language, mounted])
+
   const navItems = [
     { href: '/', label: t('nav.home', language) },
     { href: '/deploy', label: t('nav.deploy', language) },
@@ -196,7 +203,7 @@ export function TopBar() {
                   className="flex items-center gap-2 py-2.5 px-3 rounded text-sm text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
                 >
                   <FaGithub className="h-4 w-4" />
-                  GitHub
+                  {t('nav.github', language)}
                 </a>
               </motion.div>
             </nav>

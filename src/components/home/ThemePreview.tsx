@@ -1,21 +1,31 @@
 "use client"
 
 import React, { useState } from 'react'
-import { Card, CardContent } from '@/components/ui/card'
+import { useApp } from '@/contexts/AppContext'
+import { t } from '@/lib/i18n'
+import { Card } from '@/components/ui/card'
 import { motion } from 'framer-motion'
 import { cn } from '@/lib/utils'
 
-const themes = [
-  { name: '默认橙', desc: '温暖活力的橙色主题', color: 'from-orange-500 to-orange-300', features: ['渐变强调色', '温暖背景', '高对比度'] },
-  { name: '深海蓝', desc: '沉稳专业的蓝色主题', color: 'from-blue-600 to-blue-400', features: ['专业商务', '清爽视觉', '易于阅读'] },
-  { name: '森林绿', desc: '自然清新的绿色主题', color: 'from-green-600 to-green-400', features: ['护眼配色', '自然气息', '舒适阅读'] },
-  { name: '深邃黑', desc: '现代感十足的深色主题', color: 'from-gray-800 to-gray-600', features: ['夜间模式', '低对比度', '护眼设计'] },
-  { name: '薰衣草', desc: '优雅浪漫的紫色主题', color: 'from-purple-600 to-purple-400', features: ['优雅配色', '柔和视觉', '艺术气息'] },
-  { name: '玫瑰粉', desc: '甜美温柔的粉色主题', color: 'from-pink-500 to-pink-300', features: ['温暖甜美', '亲和力', '女性向'] },
-]
+interface ThemeItem {
+  nameKey: string
+  descKey: string
+  color: string
+  features: string[]
+}
 
 export function ThemePreview() {
+  const { language } = useApp()
   const [activeTheme, setActiveTheme] = useState(0)
+
+  const themes: ThemeItem[] = [
+    { nameKey: 'theme.default', descKey: 'theme.default.desc', color: 'from-orange-500 to-orange-300', features: ['theme.default.f1', 'theme.default.f2', 'theme.default.f3'] },
+    { nameKey: 'theme.blue', descKey: 'theme.blue.desc', color: 'from-blue-600 to-blue-400', features: ['theme.blue.f1', 'theme.blue.f2', 'theme.blue.f3'] },
+    { nameKey: 'theme.green', descKey: 'theme.green.desc', color: 'from-green-600 to-green-400', features: ['theme.green.f1', 'theme.green.f2', 'theme.green.f3'] },
+    { nameKey: 'theme.black', descKey: 'theme.black.desc', color: 'from-gray-800 to-gray-600', features: ['theme.black.f1', 'theme.black.f2', 'theme.black.f3'] },
+    { nameKey: 'theme.purple', descKey: 'theme.purple.desc', color: 'from-purple-600 to-purple-400', features: ['theme.purple.f1', 'theme.purple.f2', 'theme.purple.f3'] },
+    { nameKey: 'theme.pink', descKey: 'theme.pink.desc', color: 'from-pink-500 to-pink-300', features: ['theme.pink.f1', 'theme.pink.f2', 'theme.pink.f3'] },
+  ]
 
   return (
     <section className="py-24 px-4 bg-muted/30">
@@ -27,8 +37,8 @@ export function ThemePreview() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">多种主题，随心切换</h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">内置多款精美主题，一键切换，还支持自定义配色</p>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">{t('theme.preview.title', language)}</h2>
+          <p className="text-muted-foreground max-w-2xl mx-auto">{t('theme.preview.subtitle', language)}</p>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -53,8 +63,8 @@ export function ThemePreview() {
                 <div className="flex items-center gap-4">
                   <div className={cn("w-12 h-12 rounded-lg bg-gradient-to-br", theme.color)} />
                   <div>
-                    <h3 className="font-semibold">{theme.name}</h3>
-                    <p className="text-sm text-muted-foreground">{theme.desc}</p>
+                    <h3 className="font-semibold">{t(theme.nameKey, language)}</h3>
+                    <p className="text-sm text-muted-foreground">{t(theme.descKey, language)}</p>
                   </div>
                 </div>
               </button>
@@ -87,16 +97,16 @@ export function ThemePreview() {
                   <div>
                     <h4 className="font-semibold">My Blog</h4>
                     <div className="flex gap-4 text-xs text-muted-foreground">
-                      <span>首页</span>
-                      <span>文章</span>
-                      <span>关于</span>
+                      <span>{t('nav.home', language)}</span>
+                      <span>{t('usecases.tech', language)}</span>
+                      <span>{t('nav.about', language)}</span>
                     </div>
                   </div>
                 </div>
                 {/* Theme features */}
                 <div className="space-y-2">
-                  <h5 className="text-sm font-medium mb-3">主题特性</h5>
-                  {themes[activeTheme].features.map((feature, i) => (
+                  <h5 className="text-sm font-medium mb-3">{t('theme.features.title', language)}</h5>
+                  {themes[activeTheme].features.map((featureKey, i) => (
                     <motion.div
                       key={i}
                       initial={{ opacity: 0, x: -10 }}
@@ -105,7 +115,7 @@ export function ThemePreview() {
                       className="flex items-center gap-2 text-sm text-muted-foreground"
                     >
                       <div className={cn("w-2 h-2 rounded-full bg-gradient-to-r", themes[activeTheme].color)} />
-                      {feature}
+                      {t(featureKey, language)}
                     </motion.div>
                   ))}
                 </div>

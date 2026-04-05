@@ -43,8 +43,8 @@ export function FloatingIsland() {
         <div className="bg-background border border-border rounded-lg px-1.5 py-1.5 flex items-center gap-0.5">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 px-3 py-1.5">
-            <img src="/images/logo/91EA14E227EFF29C0F8D5532F97DAE6B-removebg-preview1 1.png" alt="QuillStack Logo" className="w-7 h-7 object-contain" />
-            <span className="font-medium text-sm hidden sm:inline">QuillStack</span>
+            <img src="/images/logo/91EA14E227EFF29C0F8D5532F97DAE6B-removebg-preview1 1.png" alt={t('common.logoAlt', language)} className="w-7 h-7 object-contain" />
+            <span className="font-medium text-sm hidden sm:inline">{t('common.brandName', language)}</span>
           </Link>
 
           {/* Nav items - flat */}
@@ -126,7 +126,7 @@ export function FloatingIsland() {
                 className="flex items-center gap-2 text-lg py-3 px-6 text-muted-foreground hover:text-foreground transition-colors"
               >
                 <FaGithub className="h-5 w-5" />
-                GitHub
+                {t('nav.github', language)}
               </motion.a>
             </nav>
           </motion.div>

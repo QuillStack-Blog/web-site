@@ -92,7 +92,7 @@ export default function DeployPage() {
                       </li>
                       <li className="flex items-center gap-2 text-muted-foreground">
                         <ChevronRight className="h-4 w-4 text-primary" />
-                        {language === 'en' ? 'A GitHub account' : language === 'tw' ? '一個 GitHub 帳號' : '一个 GitHub 账号'}
+                        {t('deploy.step1.github', language)}
                       </li>
                     </ul>
                     <p className="text-muted-foreground mb-4">{t('deploy.step1.quick', language)}</p>
@@ -100,7 +100,7 @@ export default function DeployPage() {
                       <div className="flex items-center gap-2 px-4 py-2 bg-muted/80 border-b border-border/50">
                         <Terminal className="h-4 w-4 text-primary" />
                         <span className="text-sm text-muted-foreground">
-                          {language === 'en' ? 'Terminal' : language === 'tw' ? '終端' : '终端'}
+                          {t('deploy.step1.terminal', language)}
                         </span>
                       </div>
                       <pre className="p-4 text-sm overflow-x-auto">

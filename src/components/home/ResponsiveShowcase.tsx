@@ -1,16 +1,20 @@
 "use client"
 
 import React from 'react'
+import { useApp } from '@/contexts/AppContext'
+import { t } from '@/lib/i18n'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { motion } from 'framer-motion'
 import { Monitor, Tablet, Smartphone, Shield, Zap, Star } from 'lucide-react'
 
 export function ResponsiveShowcase() {
+  const { language } = useApp()
+
   const devices = [
-    { icon: Monitor, title: '桌面端', desc: '大屏幕沉浸式阅读', tags: ['侧边栏导航', '宽屏布局', '高清图片展示'] },
-    { icon: Tablet, title: '平板端', desc: '舒适的中间尺寸体验', tags: ['自适应布局', '触控优化', '适中的字体'] },
-    { icon: Smartphone, title: '手机端', desc: '随时随地，优雅阅读', tags: ['汉堡菜单', '底部导航', '快速滑动'] },
+    { icon: Monitor, titleKey: 'responsive.desktop', descKey: 'responsive.desktop.desc', tags: ['responsive.desktop.tag1', 'responsive.desktop.tag2', 'responsive.desktop.tag3'] },
+    { icon: Tablet, titleKey: 'responsive.tablet', descKey: 'responsive.tablet.desc', tags: ['responsive.tablet.tag1', 'responsive.tablet.tag2', 'responsive.tablet.tag3'] },
+    { icon: Smartphone, titleKey: 'responsive.mobile', descKey: 'responsive.mobile.desc', tags: ['responsive.mobile.tag1', 'responsive.mobile.tag2', 'responsive.mobile.tag3'] },
   ]
 
   return (
@@ -23,8 +27,8 @@ export function ResponsiveShowcase() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">全端适配，处处精彩</h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">无论使用什么设备，都能获得最佳的阅读体验</p>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">{t('responsive.title', language)}</h2>
+          <p className="text-muted-foreground max-w-2xl mx-auto">{t('responsive.subtitle', language)}</p>
         </motion.div>
 
         {/* Device cards */}
@@ -48,11 +52,11 @@ export function ResponsiveShowcase() {
                   <div className="w-14 h-14 rounded-xl bg-accent/50 flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/20 transition-colors">
                     <device.icon className="h-7 w-7 text-primary" />
                   </div>
-                  <h3 className="text-lg font-semibold text-center mb-2">{device.title}</h3>
-                  <p className="text-sm text-muted-foreground text-center mb-4">{device.desc}</p>
+                  <h3 className="text-lg font-semibold text-center mb-2">{t(device.titleKey, language)}</h3>
+                  <p className="text-sm text-muted-foreground text-center mb-4">{t(device.descKey, language)}</p>
                   <div className="flex flex-wrap gap-2 justify-center">
                     {device.tags.map((tag, i) => (
-                      <Badge key={i} variant="secondary" className="text-xs">{tag}</Badge>
+                      <Badge key={i} variant="secondary" className="text-xs">{t(tag, language)}</Badge>
                     ))}
                   </div>
                 </CardContent>
@@ -73,21 +77,21 @@ export function ResponsiveShowcase() {
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-4">
                     <Shield className="h-8 w-8 text-primary" />
-                    <h3 className="text-2xl font-bold">PWA 支持</h3>
+                    <h3 className="text-2xl font-bold">{t('responsive.pwa', language)}</h3>
                   </div>
                   <p className="text-muted-foreground mb-6">
-                    支持渐进式 Web 应用，可以像原生应用一样安装到主屏幕，离线也能阅读。
+                    {t('responsive.pwa.desc', language)}
                   </p>
                 </div>
                 <div className="flex gap-6">
                   {[
-                    { value: '100', label: 'Lighthouse' },
-                    { value: '<1s', label: '首屏加载' },
-                    { value: 'A+', label: '性能评级' },
+                    { value: '100', labelKey: 'responsive.pwa.lighthouse' },
+                    { value: '<1s', labelKey: 'responsive.pwa.loadtime' },
+                    { value: 'A+', labelKey: 'responsive.pwa.rating' },
                   ].map((metric, i) => (
                     <div key={i} className="text-center">
                       <div className="text-3xl font-bold gradient-text">{metric.value}</div>
-                      <div className="text-sm text-muted-foreground mt-1">{metric.label}</div>
+                      <div className="text-sm text-muted-foreground mt-1">{t(metric.labelKey, language)}</div>
                     </div>
                   ))}
                 </div>

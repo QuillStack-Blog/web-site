@@ -103,15 +103,13 @@ export function FileTree() {
           className="text-center mb-12"
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            {language === 'en' ? 'Project Structure' : language === 'tw' ? '專案結構' : '项目结构'}
+            {t('filetree.title', language)}
           </h2>
+
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            {language === 'en'
-              ? 'Simple and clear directory structure, easy to get started'
-              : language === 'tw'
-              ? '簡潔清晰的目錄結構，易於上手'
-              : '简洁清晰的目录结构，易于上手'}
+            {t('filetree.desc', language)}
           </p>
+
         </motion.div>
 
         <motion.div
@@ -126,15 +124,14 @@ export function FileTree() {
                   <TreeNodeComponent key={index} node={node} />
                 ))}
               </div>
+
             </CardContent>
+
           </Card>
           <p className="text-sm text-muted-foreground text-center mt-4">
-            {language === 'en'
-              ? 'Highlighted items are your main workspace'
-              : language === 'tw'
-              ? '高亮項目是你的主要工作空間'
-              : '高亮项是你的主要工作空间'}
+            {t('filetree.highlight', language)}
           </p>
+
         </motion.div>
       </div>
     </section>

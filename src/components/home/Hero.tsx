@@ -271,10 +271,10 @@ export function Hero() {
             className="flex flex-col sm:flex-row gap-3 justify-center"
           >
             <button className="px-6 py-2.5 bg-primary text-primary-foreground rounded-md font-medium text-sm hover:opacity-90 transition-opacity">
-              {language === 'en' ? 'Get Started' : language === 'tw' ? '開始使用' : '开始使用'}
+              {t('hero.cta.primary', language)}
             </button>
             <button className="px-6 py-2.5 border border-border bg-background rounded-md font-medium text-sm hover:bg-muted transition-colors">
-              {language === 'en' ? 'Learn More' : language === 'tw' ? '了解更多' : '了解更多'}
+              {t('hero.cta.secondary', language)}
             </button>
           </motion.div>
         </motion.div>
