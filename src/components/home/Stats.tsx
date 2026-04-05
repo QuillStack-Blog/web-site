@@ -1,54 +1,71 @@
-"use client";
+"use client"
 
-import { useEffect, useState } from "react";
-import { siteLinks, statItems } from "@/config/site";
-import { useLocale } from "@/components/providers/LocaleProvider";
-import { Reveal } from "@/components/shared/Reveal";
-import { SectionHeader } from "@/components/shared/SectionHeader";
+import React from 'react'
+import { useApp } from '@/contexts/AppContext'
+import { t } from '@/lib/i18n'
+import { Card, CardContent } from '@/components/ui/card'
+import { Button } from '@/components/ui/button'
+import { motion } from 'framer-motion'
+import { FaGithub } from 'react-icons/fa'
+import { Star, GitFork, Users, Download } from 'lucide-react'
 
 export function Stats() {
-  const { t } = useLocale();
-  const [tick, setTick] = useState(0);
+  const { language } = useApp()
 
-  useEffect(() => {
-    const id = window.setInterval(() => setTick((v) => (v < 20 ? v + 1 : v)), 40);
-    return () => window.clearInterval(id);
-  }, []);
+  const stats = [
+    { icon: Star, value: '1.2k+', label: t('stats.stars', language) },
+    { icon: GitFork, value: '180', label: t('stats.forks', language) },
+    { icon: Users, value: '5.0k+', label: t('stats.users', language) },
+    { icon: Download, value: '15k+', label: t('stats.downloads', language) },
+  ]
 
   return (
-    <section className="section">
-      <div className="container">
-        <Reveal>
-          <SectionHeader
-            eyebrow={t.home.stats.eyebrow}
-            title={t.home.stats.title}
-            description={t.home.stats.description}
-            action={
-              <a href={siteLinks.github} className="pill" style={{ color: "var(--text-primary)" }}>
-                {t.common.buttons.viewGithub}
-              </a>
-            }
-          />
-        </Reveal>
+    <section className="py-20 px-4 bg-muted/30">
+      <div className="max-w-6xl mx-auto">
+        {/* GitHub banner */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="flex justify-center mb-10"
+        >
+          <Button variant="outline" className="gap-2" asChild>
+            <a href="https://github.com/QuillStack-Blog/QuillStack" target="_blank" rel="noopener noreferrer">
+              <FaGithub className="h-4 w-4" />
+              {t('stats.github', language)}
+            </a>
+          </Button>
+        </motion.div>
 
-        <div style={{ display: "grid", gap: "0.8rem", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))" }}>
-          {statItems.map((item, idx) => {
-            const labels = t.home.stats.items;
-            const label = labels[item.id as keyof typeof labels];
-            const animated = Math.round((item.value * tick) / 20);
-            return (
-              <Reveal key={item.id} className="card" delay={idx * 0.04}>
-                <div style={{ padding: "1rem" }}>
-                  <div className="gradient-text" style={{ fontSize: "1.6rem", fontWeight: 700 }}>
-                    {tick < 20 ? animated.toLocaleString() : item.display}
+        {/* Stats grid - flat style */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ staggerChildren: 0.1 }}
+          className="grid grid-cols-2 md:grid-cols-4 gap-4"
+        >
+          {stats.map((stat, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+            >
+              <Card className="bg-card">
+                <CardContent className="p-5 text-center">
+                  <div className="w-10 h-10 rounded-md bg-primary/10 flex items-center justify-center mx-auto mb-3">
+                    <stat.icon className="h-5 w-5 text-primary" />
                   </div>
-                  <div style={{ color: "var(--text-secondary)", marginTop: "0.2rem" }}>{label}</div>
-                </div>
-              </Reveal>
-            );
-          })}
-        </div>
+                  <div className="text-2xl font-bold text-primary mb-1">{stat.value}</div>
+                  <div className="text-sm text-muted-foreground">{stat.label}</div>
+                </CardContent>
+              </Card>
+            </motion.div>
+          ))}
+        </motion.div>
       </div>
     </section>
-  );
+  )
 }

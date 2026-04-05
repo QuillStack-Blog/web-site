@@ -1,70 +1,116 @@
-"use client";
+"use client"
 
-import { useState } from "react";
-import Image from "next/image";
-import { videoAssets } from "@/config/site";
-import { useLocale } from "@/components/providers/LocaleProvider";
-import { Reveal } from "@/components/shared/Reveal";
-import { SectionHeader } from "@/components/shared/SectionHeader";
+import React, { useState } from 'react'
+import { Card, CardContent } from '@/components/ui/card'
+import { Button } from '@/components/ui/button'
+import { Badge } from '@/components/ui/badge'
+import { motion } from 'framer-motion'
+import { Play, Clock, ListVideo } from 'lucide-react'
+
+const videos = [
+  { title: '5 分钟快速上手', duration: '05:23', desc: '从零开始搭建你的第一个博客', thumb: 'https://placehold.co/800x450/1f2937/f97316?text=Quick+Start+Tutorial' },
+  { title: '主题自定义指南', duration: '08:15', desc: '打造独一无二的个人风格', thumb: 'https://placehold.co/800x450/fed7aa/f97316?text=Theme+Customization' },
+  { title: 'Markdown 写作技巧', duration: '06:42', desc: '提升写作效率的实用技巧', thumb: 'https://placehold.co/800x450/fff7ed/f97316?text=Markdown+Tips' },
+]
 
 export function VideoShowcase() {
-  const { t } = useLocale();
-  const [active, setActive] = useState(0);
-
-  const item = t.home.videoShowcase.items[active];
-  const video = videoAssets[active] ?? videoAssets[0];
+  const [activeVideo, setActiveVideo] = useState(0)
+  const [isPlaying, setIsPlaying] = useState(false)
 
   return (
-    <section className="section">
-      <div className="container">
-        <Reveal>
-          <SectionHeader
-            eyebrow={t.home.videoShowcase.eyebrow}
-            title={t.home.videoShowcase.title}
-            description={t.home.videoShowcase.description}
-          />
-        </Reveal>
+    <section className="py-24 px-4 bg-muted/30">
+      <div className="max-w-6xl mx-auto">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">视频教程</h2>
+          <p className="text-muted-foreground max-w-2xl mx-auto">跟着视频一步步学习，快速掌握 QuillStack</p>
+        </motion.div>
 
-        <div style={{ display: "grid", gap: "1rem", gridTemplateColumns: "1.35fr 1fr" }}>
-          <Reveal className="card" delay={0.05}>
-            <div style={{ padding: "1rem" }}>
-              <Image src={video.src} alt={item.title} width={1200} height={680} style={{ width: "100%", height: "auto", borderRadius: 12 }} />
-              <h3 style={{ margin: "0.8rem 0 0.3rem" }}>{item.title}</h3>
-              <p style={{ margin: 0, color: "var(--text-secondary)" }}>{item.description}</p>
-              <p style={{ margin: "0.45rem 0 0", color: "var(--text-tertiary)", fontFamily: "var(--font-mono)" }}>
-                02:15 / {video.duration}
-              </p>
-            </div>
-          </Reveal>
-
-          <Reveal className="card" delay={0.1}>
-            <div style={{ padding: "1rem" }}>
-              <h3 style={{ marginTop: 0 }}>{t.common.labels.playlist}</h3>
-              <div style={{ display: "grid", gap: "0.45rem" }}>
-                {t.home.videoShowcase.items.map((entry, idx) => (
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {/* Main video */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="lg:col-span-2"
+          >
+            <Card className="overflow-hidden bg-card/50 backdrop-blur border-border/50">
+              <div className="relative aspect-video bg-muted/50">
+                <img
+                  src={videos[activeVideo].thumb}
+                  alt={videos[activeVideo].title}
+                  className="w-full h-full object-cover"
+                />
+                {/* Play overlay */}
+                <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
                   <button
-                    type="button"
-                    key={entry.id}
-                    onClick={() => setActive(idx)}
-                    style={{
-                      textAlign: "left",
-                      borderRadius: 10,
-                      border: "1px solid var(--border-primary)",
-                      padding: "0.65rem",
-                      background: idx === active ? "color-mix(in srgb, var(--brand-primary) 20%, transparent)" : "transparent",
-                      cursor: "pointer",
-                      color: "var(--text-primary)",
-                    }}
+                    onClick={() => setIsPlaying(!isPlaying)}
+                    className="w-16 h-16 rounded-full bg-primary/90 flex items-center justify-center hover:bg-primary transition-colors hover:scale-110 transform duration-200"
                   >
-                    <strong>{entry.title}</strong>
-                    <div style={{ fontSize: "0.86rem", color: "var(--text-secondary)" }}>{videoAssets[idx]?.duration}</div>
+                    <Play className="h-8 w-8 text-white ml-1" fill="white" />
                   </button>
-                ))}
+                </div>
+                {/* Duration badge */}
+                <div className="absolute bottom-4 right-4 bg-black/70 rounded-md px-2 py-1 text-sm flex items-center gap-1">
+                  <Clock className="h-3 w-3" />
+                  {isPlaying ? '02:15' : videos[activeVideo].duration}
+                </div>
               </div>
-            </div>
-          </Reveal>
+              <CardContent className="p-6">
+                <h3 className="text-xl font-semibold mb-2">{videos[activeVideo].title}</h3>
+                <p className="text-muted-foreground">{videos[activeVideo].desc}</p>
+              </CardContent>
+            </Card>
+          </motion.div>
+
+          {/* Playlist */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+          >
+            <Card className="bg-card/50 backdrop-blur border-border/50">
+              <CardContent className="p-4">
+                <div className="flex items-center gap-2 mb-4">
+                  <ListVideo className="h-5 w-5 text-primary" />
+                  <h4 className="font-semibold">播放列表</h4>
+                </div>
+                <div className="space-y-2">
+                  {videos.map((video, index) => (
+                    <button
+                      key={index}
+                      onClick={() => { setActiveVideo(index); setIsPlaying(false) }}
+                      className={`w-full text-left p-3 rounded-lg transition-all ${
+                        activeVideo === index
+                          ? 'bg-primary/10 border border-primary/30'
+                          : 'hover:bg-accent/50 border border-transparent'
+                      }`}
+                    >
+                      <div className="flex items-center gap-3">
+                        <div className="relative w-20 aspect-video rounded overflow-hidden bg-muted/50 flex-shrink-0">
+                          <img src={video.thumb} alt={video.title} className="w-full h-full object-cover" />
+                          <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
+                            <Play className="h-4 w-4 text-white" fill="white" />
+                          </div>
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <p className="text-sm font-medium truncate">{video.title}</p>
+                          <p className="text-xs text-muted-foreground">{video.duration}</p>
+                        </div>
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
         </div>
       </div>
     </section>
-  );
+  )
 }

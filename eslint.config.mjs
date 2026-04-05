@@ -1,9 +1,6 @@
-import { defineConfig, globalIgnores } from "eslint/config";
-import nextVitals from "eslint-config-next/core-web-vitals";
-import nextTs from "eslint-config-next/typescript";
+/** @type {import("eslint").Linter.Config} */
+const config = {
+  extends: ["next/core-web-vitals"],
+}
 
-export default defineConfig([
-  ...nextVitals,
-  ...nextTs,
-  globalIgnores([".next/**", "dist/**", "node_modules/**"]),
-]);
+module.exports = config
