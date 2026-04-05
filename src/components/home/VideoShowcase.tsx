@@ -46,7 +46,7 @@ export function VideoShowcase() {
               <div className="relative aspect-video bg-muted/50">
                 <img
                   src={videos[activeVideo].thumb}
-                  alt={videos[activeVideo].title}
+                  alt={t(videos[activeVideo].titleKey, language)}
                   className="w-full h-full object-cover"
                 />
                 {/* Play overlay */}
