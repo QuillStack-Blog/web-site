@@ -93,7 +93,7 @@ export function Testimonials() {
           className="text-center"
         >
           <p className="text-muted-foreground mb-6">{t('testimonials.cta', language)}</p>
-          <Button variant="gradient" size="lg">{t('testimonials.cta.btn', language)}</Button>
+          <Button className="bg-gradient-to-r from-primary to-orange-500 hover:opacity-90" size="lg">{t('testimonials.cta.btn', language)}</Button>
         </motion.div>
       </div>
     </section>
